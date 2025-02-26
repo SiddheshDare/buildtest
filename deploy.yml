@@ -1,7 +1,7 @@
 ---
-- name: Deploy Java Application
+- name: Deploy Scientific Calculator Docker Image
   hosts: localhost
-  remote_user: prabal
+  connection: local
   become: false
   tasks:
 
@@ -12,7 +12,7 @@
 
     - name: Pull Docker Image from Docker Hub
       docker_image:
-        name: "prabal2011singh/scientific_cal"
+        name: "siddhesh01/java_sci_cal"
         source: pull
       register: docker_pull_result
 
@@ -31,4 +31,4 @@
       ignore_errors: yes
 
     - name: Run Java Application Container
-      shell: docker run -it -d --name scientific_cal prabal2011singh/scientific_cal
+      shell: docker run -it -d --name java_sci_cal siddhesh01/java_sci_cal
