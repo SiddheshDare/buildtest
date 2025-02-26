@@ -20,15 +20,11 @@
       debug:
         var: docker_pull_result
 
-    - name: Ensure Docker service is running
+    - name: Start Docker service
       service:
         name: docker
         state: started
 
-    - name: Stop and remove existing container if running
-      shell: |
-        docker ps -a --format '{{ "{{" }} .Names {{ "}}" }}' | grep -w calculator && docker stop calculator && docker rm calculator || true
-      ignore_errors: yes
 
     - name: Run Java Application Container
       shell: docker run -it -d --name java_sci_cal siddhesh01/java_sci_cal /bin/bash
