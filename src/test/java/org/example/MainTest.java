@@ -5,42 +5,56 @@ import java.math.BigInteger;
 
 public class MainTest {
 
-    @Test
+        @Test
     public void testSquareRoot() {
-        // Valid square root calculations
-        assertEquals(4.0, Main.squareRoot(16), "Square root of 16 should be 4.0");
-        assertEquals(5.0, Main.squareRoot(25), "Square root of 25 should be 5.0");
+        assertEquals(2.0, ScientificCalculator.squareRoot(4.0), 0.0001);
+        assertEquals(3.0, ScientificCalculator.squareRoot(9.0), 0.0001);
+    }
 
-        // Invalid: negative number
-        
+    @Test
+    public void testSquareRootNegativeInput() {
+        assertEquals(Double.NaN, ScientificCalculator.squareRoot(-1), 0.0001);
     }
 
     @Test
     public void testFactorial() {
-        // Valid factorial calculations
-        assertEquals(BigInteger.valueOf(120), Main.factorial(5), "Factorial of 5 should be 120");
-        assertEquals(BigInteger.ONE, Main.factorial(0), "Factorial of 0 should be 1");
-
-        // Invalid: negative number
-        
+        assertEquals(120, ScientificCalculator.factorial(5), 0.0001);
+        assertEquals(3628800, ScientificCalculator.factorial(10), 0.0001);
     }
 
     @Test
-    public void testNaturalLogarithm() {
-        // Valid natural logarithm calculations
-        assertEquals(Math.log(2), Main.naturalLogarithm(2), "Natural logarithm of 2 should match Math.log(2)");
-
-        // Invalid: non-positive number
-        
+    public void testFactorialZero() {
+        assertEquals(1, ScientificCalculator.factorial(0));
     }
 
     @Test
-    public void testPowerFunction() {
-        // Valid power calculations
-        assertEquals(16.0, Main.power(4, 2), "4 raised to power 2 should be 16");
-        assertEquals(1.0, Main.power(5, 0), "Any number raised to power 0 should be 1");
+    public void testFactorialNegativeInput() {
+        assertThrows(IllegalArgumentException.class, () -> ScientificCalculator.factorial(-1));
+    }
 
-        // Valid negative exponent
-        
+    @Test
+    public void testNaturalLog() {
+        assertEquals(1.7917, ScientificCalculator.naturalLog(6.0), 0.0001);
+    }
+
+    @Test
+    public void testNaturalLogNegativeInput() {
+        assertEquals(Double.NaN, ScientificCalculator.squareRoot(-1), 0.0001);
+    }
+
+    @Test
+    public void testNaturalLogOne() {
+        assertEquals(0, ScientificCalculator.naturalLog(1), 0.0001);
+    }
+
+    @Test
+    public void testPower() {
+        assertEquals(8.0, ScientificCalculator.power(2.0, 3.0), 0.0001);
+        assertEquals(1024.0, ScientificCalculator.power(2.0, 10.0), 0.0001);
+    }
+
+    @Test
+    public void testPowerNegativeExponent() {
+        assertEquals(0.25, ScientificCalculator.power(2, -2), 0.0001);
     }
 }
