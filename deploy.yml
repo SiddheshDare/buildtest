@@ -31,4 +31,4 @@
       ignore_errors: yes
 
     - name: Run Java Application Container
-      shell: docker run -it -d --name java_sci_cal siddhesh01/java_sci_cal
+      shell: docker run -it -d --name java_sci_cal siddhesh01/java_sci_cal /bin/bash
