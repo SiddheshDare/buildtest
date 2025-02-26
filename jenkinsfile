@@ -6,8 +6,8 @@ pipeline {
     }
 
     environment {
-        DOCKER_IMAGE_NAME = 'scientific_cal'
-        GITHUB_REPO_URL = 'https://github.com/prabal2011singh/Calculator_java.git'
+        DOCKER_IMAGE_NAME = 'java_sci_cal'
+        GITHUB_REPO_URL = 'https://github.com/SiddheshDare/buildtest.git'
     }
 
     stages {
@@ -46,9 +46,9 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('', 'DockerHubCredentials') {
-                        sh 'docker tag scientific_cal prabal2011singh/scientific_cal:latest'
-                        sh 'docker push prabal2011singh/scientific_cal'
+                    docker.withRegistry('', 'DockerHubCred') {
+                        sh 'docker tag java_sci_cal siddhesh01/java_sci_cal:latest'
+                        sh 'docker push siddhesh01/java_sci_cal'
                     }
                 }
             }
@@ -68,19 +68,4 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            mail to: 'prabal.singh@iiitb.ac.in',
-                 subject: "Application Deployment SUCCESS: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                 body: "The build was successful!"
-        }
-        failure {
-            mail to: 'prabal.singh@iiitb.ac.in',
-                 subject: "Application Deployment FAILURE: Build ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                 body: "The build failed."
-        }
-        always {
-            cleanWs()
-        }
-    }
 }
