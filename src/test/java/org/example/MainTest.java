@@ -8,7 +8,7 @@ public class MainTest {
     // Test squareRoot with positive input
     @Test
     public void testSquareRoot() {
-        assertEquals(1.0, Main.squareRoot(4.0), 0.0001);
+        assertEquals(2.0, Main.squareRoot(4.0), 0.0001);
         assertEquals(3.0, Main.squareRoot(9.0), 0.0001);
     }
 
